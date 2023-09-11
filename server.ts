@@ -1,11 +1,11 @@
 import 'zone.js/node';
 
-import { APP_BASE_HREF } from '@angular/common';
-import { ngExpressEngine } from '@nguniversal/express-engine';
+import {APP_BASE_HREF} from '@angular/common';
+import {ngExpressEngine} from '@nguniversal/express-engine';
 import * as express from 'express';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-import { AppServerModule } from './src/main.server';
+import {existsSync} from 'node:fs';
+import {join} from 'node:path';
+import {AppServerModule} from './src/main.server';
 
 const expressStaticGzip = require('express-static-gzip');
 
@@ -28,7 +28,7 @@ export function app(): express.Express {
   // Serve static files from /browser
   server.use('/', expressStaticGzip(distFolder, {
     enableBrotli: true,
-    orderPreference: ['br']
+    orderPreference: ['br', 'gz']
   }));
 
   // All regular routes use the Universal engine
