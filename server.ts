@@ -7,6 +7,8 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { AppServerModule } from './src/main.server';
 
+const expressStaticGzip = require('express-static-gzip');
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -24,8 +26,9 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('*.*', express.static(distFolder, {
-    maxAge: '1y'
+  server.use('/', expressStaticGzip(distFolder, {
+    enableBrotli: true,
+    orderPreference: ['br']
   }));
 
   // All regular routes use the Universal engine
