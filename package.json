@@ -9,10 +9,7 @@
     "test": "ng test",
     "dev:ssr": "ng run smartweb-docker-test:serve-ssr",
     "serve:ssr": "node dist/smartweb-docker-test/server/main.js",
-    "build:ssr": "ng build && ng run smartweb-docker-test:server",
-    "prerender": "ng run smartweb-docker-test:prerender",
-    "build-docker": "docker build -t smartweb-docker-test .",
-    "serve-docker": "docker run -p 4000:4000 smartweb-docker-test"
+    "build:ssr": "ng run smartweb-docker-test:server"
   },
   "private": true,
   "dependencies": {

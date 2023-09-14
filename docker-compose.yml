@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  # nginx for emulate real cdn with static files
+  static-nginx:
+    build:
+      context: ./static-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - angular_app
+
+  # our angular app with deploy url to static-nginx
+  angular_app:
+    build:
+      context: .
+    ports:
+      - "4000:4000"
